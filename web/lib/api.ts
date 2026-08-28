@@ -5,15 +5,6 @@ export interface ArticleSummary {
   filename: string;
 }
 
-export interface ArticleDetail {
-  id: string;
-  title: string;
-  body: string;
-  tweet: string;
-  source_url: string;
-  date: string; // ISO8601
-}
-
 // ArticleDetail は Go API（internal/webarticle.Detail）の GET /api/articles/:id レスポンス。
 export interface ArticleDetail {
   id: string;

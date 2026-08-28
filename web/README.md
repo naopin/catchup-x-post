@@ -43,10 +43,10 @@ npm run start
 
 | パス | 内容 |
 |---|---|
-| `app/page.tsx` | 記事一覧（現状 "Coming soon"） |
-| `app/articles/[id]/page.tsx` | 記事詳細（現状 "Coming soon"） |
+| `app/page.tsx` | 記事一覧 |
+| `app/articles/[id]/page.tsx` | 記事詳細 |
 | `lib/api.ts` | Go API（`/api/articles`, `/api/articles/:id`）を叩く型付きクライアント |
 
 ## 関連
 
-- Go API サーバー: リポジトリルートの `cmd/`（Issue #2 で実装予定）
+- Go API サーバー: リポジトリルートの `cmd/web`（`internal/webarticle`）

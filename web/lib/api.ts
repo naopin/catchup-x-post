@@ -1,16 +1,17 @@
-export interface Article {
+export interface ArticleSummary {
   id: string;
   title: string;
-  summary: string;
-  content: string;
-  tweet: string;
-  url: string;
-  created_at: string;
+  date: string; // ISO8601
+  filename: string;
 }
 
-export interface ArticleListResponse {
-  articles: Article[];
-  total: number;
+export interface ArticleDetail {
+  id: string;
+  title: string;
+  body: string;
+  tweet: string;
+  source_url: string;
+  date: string; // ISO8601
 }
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8082";
@@ -31,10 +32,10 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export function fetchArticles(): Promise<ArticleListResponse> {
-  return apiFetch<ArticleListResponse>("/api/articles");
+export function fetchArticles(): Promise<ArticleSummary[]> {
+  return apiFetch<ArticleSummary[]>("/api/articles");
 }
 
-export function fetchArticle(id: string): Promise<Article> {
-  return apiFetch<Article>(`/api/articles/${encodeURIComponent(id)}`);
+export function fetchArticle(id: string): Promise<ArticleDetail> {
+  return apiFetch<ArticleDetail>(`/api/articles/${encodeURIComponent(id)}`);
 }

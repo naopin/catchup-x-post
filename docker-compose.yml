@@ -37,13 +37,22 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.web
+    env_file:
+      - .env
     ports:
       - "8082:8082"
     environment:
-      OUTPUT_DIR: /data/output
+      CATCHUP_NEWS_BASE_URL: http://news:8080
+      OUTPUT_DIR: /app/output
+      LOGS_DIR: /app/logs
+      HISTORY_DIR: /app/history
       PORT: 8082
     volumes:
-      - ./output:/data/output:ro
+      - ./history:/app/history
+      - ./logs:/app/logs
+      - ./output:/app/output
+    depends_on:
+      - news
 
   web:
     build:

@@ -43,9 +43,10 @@ npm run start
 
 | パス | 内容 |
 |---|---|
-| `app/page.tsx` | 記事一覧（現状 "Coming soon"） |
-| `app/articles/[id]/page.tsx` | 記事詳細（現状 "Coming soon"） |
-| `lib/api.ts` | Go API（`/api/articles`, `/api/articles/:id`）を叩く型付きクライアント |
+| `app/page.tsx` | 記事一覧 |
+| `app/articles/[id]/page.tsx` | 記事詳細 |
+| `app/create/page.tsx` | キーワード指定で記事を生成するフォーム |
+| `lib/api.ts` | Go API（`/api/articles`, `/api/articles/:id`, `/api/generate`）を叩く型付きクライアント |
 
 ## 関連
 

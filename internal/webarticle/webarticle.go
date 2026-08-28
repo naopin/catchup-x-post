@@ -44,7 +44,7 @@ func List(dir string) ([]Summary, error) {
 
 	var names []string
 	for _, e := range entries {
-		if e.IsDir() || !strings.HasSuffix(e.Name(), ".txt") {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".txt") || strings.HasSuffix(e.Name(), "_collect.txt") {
 			continue
 		}
 		names = append(names, e.Name())
@@ -79,7 +79,7 @@ var ErrNotFound = fmt.Errorf("article not found")
 
 // Get は id（拡張子抜きのファイル名）に対応する記事詳細を返す。
 func Get(dir, id string) (*Detail, error) {
-	if id == "" || strings.ContainsAny(id, "/\\") || strings.Contains(id, "..") {
+	if id == "" || strings.ContainsAny(id, "/\\") || strings.Contains(id, "..") || strings.HasSuffix(id, "_collect") {
 		return nil, ErrNotFound
 	}
 

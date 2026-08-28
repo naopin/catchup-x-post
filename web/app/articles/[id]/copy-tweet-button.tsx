@@ -25,18 +25,11 @@ export function CopyTweetButton({ tweet }: { tweet: string }) {
       <button
         type="button"
         onClick={handleCopy}
-        className="rounded-md border border-current px-4 py-2 text-sm font-medium hover:opacity-80"
+        className="flex items-center gap-2 rounded-xl bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white shadow transition hover:bg-blue-400 active:scale-95"
       >
-        コピー
+        <span>{copied ? "✅" : "📋"}</span>
+        {copied ? "コピーしました" : "コピー"}
       </button>
-      {copied && (
-        <span
-          role="status"
-          className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black px-3 py-1 text-xs text-white shadow"
-        >
-          コピーしました
-        </span>
-      )}
     </div>
   );
 }

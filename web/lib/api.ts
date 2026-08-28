@@ -14,6 +14,18 @@ export interface ArticleDetail {
   date: string; // ISO8601
 }
 
+// ArticleDetail は Go API（internal/webarticle.Detail）の GET /api/articles/:id レスポンス。
+export interface ArticleDetail {
+  id: string;
+  title: string;
+  body: string;
+  tweet: string;
+  source_url: string;
+  date: string;
+}
+
+export class ArticleNotFoundError extends Error {}
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8082";
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
@@ -25,6 +37,9 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
     },
   });
 
+  if (res.status === 404) {
+    throw new ArticleNotFoundError(`article not found (${path})`);
+  }
   if (!res.ok) {
     throw new Error(`API request failed: ${res.status} ${res.statusText} (${path})`);
   }

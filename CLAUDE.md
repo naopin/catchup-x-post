@@ -77,6 +77,8 @@ go run ./cmd/post -dry-run=true
 |---|---|---|
 | catchup-news（ラジオ） | **8080** | `../catchup-news/docker-compose.yml` |
 | catchup-x-post `news` | **8081** | このリポの `docker compose up -d news` |
+| catchup-x-post `api` | **8082** | Go API サーバー（`cmd/web/`） |
+| catchup-x-post `web` | **3000** | Next.js フロント（`web/`） |
 
 ## 3役割
 

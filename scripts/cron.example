@@ -1,0 +1,13 @@
+# 定期実行例（catchup-x-post）
+#
+# 推奨: 毎日は「収集+解説」まで（DRY_RUN=true）。投稿は人が output/*.txt 確認後に別途。
+#
+# crontab -e で以下を追加（パスは環境に合わせて変更）:
+#
+# 毎日 9:00 dry-run（記事を output/ に保存）
+# 0 9 * * * cd /path/to/catchup-x-post && export LOGS_DIR=./logs OUTPUT_DIR=./output && DRY_RUN=true ./download_post.sh >> ./logs/cron.log 2>&1
+#
+# 本番投稿は手動または承認後の別ジョブ（週1など）:
+# 0 10 * * 1 cd /path/to/catchup-x-post && export LOGS_DIR=./logs OUTPUT_DIR=./output && DRY_RUN=false ./download_post.sh >> ./logs/cron-publish.log 2>&1
+#
+# Skill 運用: .cursor/skills/catchup-x-post/

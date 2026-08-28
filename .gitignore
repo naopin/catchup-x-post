@@ -1,0 +1,6 @@
+.env
+logs/*
+!logs/.gitkeep
+output/*
+!output/.gitkeep
+history/entries.jsonl

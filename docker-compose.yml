@@ -1,0 +1,34 @@
+version: "3.9"
+
+# ラジオ（catchup-news）は host:8080。X投稿用 news は 8081 で分離。
+services:
+  news:
+    build:
+      context: ../catchup-news
+      dockerfile: Dockerfile
+    container_name: catchup-x-post-news
+    env_file:
+      - ../catchup-news/.env
+    ports:
+      - "8081:8080"
+    volumes:
+      - ../catchup-news/logs:/app/logs
+      - ../catchup-news/episodes:/app/episodes
+
+  post:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      CATCHUP_NEWS_BASE_URL: http://news:8080
+      LOGS_DIR: /app/logs
+      OUTPUT_DIR: /app/output
+    volumes:
+      - ./history:/app/history
+      - ./logs:/app/logs
+      - ./output:/app/output
+    depends_on:
+      - news
+    command: ["-dry-run=true"]
